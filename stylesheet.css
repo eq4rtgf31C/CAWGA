@@ -185,11 +185,11 @@ button1 {
     }
     &:active {
         color: #9b3232;
-        transform: translateY (213px);
+        transform: translateY(3px);
         transition: all 0.3s ease;
-
     }
 }
+
 .card {
     word-wrap: break-word;
     position: absolute;
@@ -236,7 +236,7 @@ circle {
     fill: none;
     stroke: #c8e620;
     stroke-width:1;
-    cx: 150;
+    cx: 1кук50;
     cy: 150;
     r: 150;
     background-color: #c8e620;
@@ -351,8 +351,9 @@ textarea::-webkit-scrollbar {
     margin-top: 5px;
     font-family: 'Lepka';
     font-size: 15px;
-    color: #9b3232;
+    color: #bee07d;
     text-align: center;
+
     transition: max-height 0.5s ease-in-out;
 }
 
