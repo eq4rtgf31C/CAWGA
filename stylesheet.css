@@ -185,7 +185,7 @@ button1 {
     }
     &:active {
         color: #9b3232;
-        transform: translateY(3px);
+        transform: translateY(4px);
         transition: all 0.3s ease;
     }
 }
