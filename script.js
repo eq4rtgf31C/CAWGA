@@ -40,17 +40,24 @@ async function downloadCovers() {
 }
 
 function downloadImage(url, filename = "cover.jpg") {
-    fetch(url)
-        .then(resp => resp.blob())
-        .then(blob => {
-            const blobUrl = URL.createObjectURL(blob);
-            const a = document.createElement("a");
-            a.href = blobUrl;
-            a.download = filename;  
-            document.body.appendChild(a);
-            a.click();
-            a.remove();
-            URL.revokeObjectURL(blobUrl);
-        })
-        .catch(() => alert("Ошибкa при скачивании изображения"));
+    if (navigator.userAgent.indexOf("Firefox") !== -1) {
+        const link = document.createElement("a");
+        link.href = url;
+        link.setAttribute("download", filename);
+        link.click();
+    } else {
+        fetch(url)
+            .then(resp => resp.blob())
+            .then(blob => {
+                const blobUrl = URL.createObjectURL(blob);
+                const a = document.createElement("a");
+                a.href = blobUrl;
+                a.download = filename;  
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+                URL.revokeObjectURL(blobUrl);
+            })
+            .catch(() => alert("Ошибкa при скачивании изображения"));
+    }
 }
