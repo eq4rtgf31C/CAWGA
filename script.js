@@ -2,35 +2,25 @@ async function downloadCovers() {
     const results = document.getElementById("results");
     results.innerHTML = "";
 
-    let rawLinks = document.getElementById("links").value
-        .trim()
-        .split("\n")
-        .filter(link => link.trim() !== "");
-    const links = rawLinks.map(link =>
-        link.replace(/а/g, "a").replace(/А/g, "A")
-    );
+    let rawLinks = document.getElementById("links").value.trim().split("\n").filter(link => link.trim() !== "");
+    const links = rawLinks.map(link => link.replace(/а/g, "a").replace(/А/g, "A"));
 
     for (let i = 0; i < links.length; i++) {
         const link = links[i];
         try {
-            // ✅ Обход CORS через AllOrigins
-            const proxy = "https://api.allorigins.win/get?url=";
-            const response = await fetch(
-                `${proxy}${encodeURIComponent(`https://soundcloud.com/oembed?url=${link}&format=json`)}`
-            );
-            const json = await response.json();
-            const data = JSON.parse(json.contents);
+            const response = await fetch(`https://soundcloud.com/oembed?url=${encodeURIComponent(link)}&format=json`);
+            const data = await response.json();
 
-            let imageUrl = data.thumbnail_url.replace("-t500x500", "-t500x500");
+            let imageUrl = data.thumbnail_url;
 
             const box = document.createElement("div");
             box.className = "cover-box";
-            box.style.transition = "max-height 0.5s ease-in-out, opacity 0.5s ease-in-out";
-            box.style.maxHeight = "0";
-            box.style.opacity = "0";
+            box.style.transition = "max-height 0.5s ease-in-out";
+            box.style.maxHeight = "0px";
+            box.style.overflow = "hidden";
             box.innerHTML = `
                 <div class="cover-wrapper">
-                    <img src="${imageUrl}" alt="cover" style="max-width: 200px; border-radius: 10px; opacity: 0; transition: opacity 0.5s ease-in-out;">
+                    <img src="${imageUrl}" alt="cover" style="max-width: 200px; transition: opacity 0.5s ease-in-out; opacity: 0;">
                     <button class="download-btn">Скачать</button>
                 </div>
                 <p>${data.title}</p>
@@ -42,12 +32,11 @@ async function downloadCovers() {
             img.addEventListener("load", () => {
                 img.style.opacity = "1";
                 box.style.maxHeight = "400px";
-                box.style.opacity = "1";
             });
 
             const btn = box.querySelector(".download-btn");
-            btn.addEventListener("click", async () => {
-                await downloadImage(imageUrl, sanitizeFileName(data.title) + ".jpg");
+            btn.addEventListener("click", () => {
+                downloadImage(imageUrl, `cover_${i + 1}.jpg`);
             });
 
         } catch (e) {
@@ -59,24 +48,18 @@ async function downloadCovers() {
     }
 }
 
-function sanitizeFileName(name) {
-    return name.replace(/[<>:"/\\|?*]+/g, '').substring(0, 80);
-}
-
-async function downloadImage(url, filename = "cover.jpg") {
-    try {
-        const resp = await fetch(url);
-        const blob = await resp.blob();
-        const blobUrl = URL.createObjectURL(blob);
-        const a = document.createElement("a");
-        a.href = blobUrl;
-        a.download = filename;
-        document.body.appendChild(a);
-        a.click();
-        a.remove();
-        URL.revokeObjectURL(blobUrl);
-    } catch (err) {
-        alert("Ошибка при скачивании изображения 😢");
-        console.error(err);
-    }
+function downloadImage(url, filename = "cover.jpg") {
+    fetch(url)
+        .then(resp => resp.blob())
+        .then(blob => {
+            const blobUrl = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = blobUrl;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+            URL.revokeObjectURL(blobUrl);
+        })
+        .catch(() => alert("Ошибка при скачивании изображения"));
 }
