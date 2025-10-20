@@ -49,8 +49,15 @@ async function downloadCovers() {
 }
 
 function downloadImage(url, filename = "cover.jpg") {
-    fetch(url)
-        .then(resp => resp.blob())
+    
+    const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`;
+    fetch(proxyUrl) 
+        .then(resp => {
+            if (!resp.ok) {
+                throw new Error('Ошибка сети или прокси-сервера');
+            }
+            return resp.blob();
+        })
         .then(blob => {
             const blobUrl = URL.createObjectURL(blob);
             const a = document.createElement("a");
@@ -61,5 +68,8 @@ function downloadImage(url, filename = "cover.jpg") {
             a.remove();
             URL.revokeObjectURL(blobUrl);
         })
-        .catch(() => alert("Ошибка при скачивании изображения"));
+        .catch(err => {
+            console.error("Ошибка скачивания:", err);
+            alert("Ошибка при скачивании изображения. Попробуйте снова.");
+        });
 }
