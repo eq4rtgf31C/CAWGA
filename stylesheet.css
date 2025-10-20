@@ -5,191 +5,95 @@
     font-style: normal;
     font-display: swap;
 }
-        html, body, div, span, applet, object, iframe,
-        h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-        a, abbr, acronym, address, big, cite, code,
-        del, dfn, em, img, ins, kbd, q, s, samp,
-        small, strike, strong, sub, sup, tt, var,
-        b, u, i, center,
-        dl, dt, dd, ol, ul, li,
-        fieldset, form, label, legend,
-        table, caption, tbody, tfoot, thead, tr, th, td,
-        article, aside, canvas, details, embed,
-        figure, figcaption, footer, header, hgroup,
-        menu, nav, output, ruby, section, summary,
-        time, mark, audio, video {
-            margin: 0;
-            padding: 0;
-            border: 0;
-            font-size: 100%;
-            font: inherit;
-            vertical-align: baseline;
-        }
-        /* HTML5 display-role reset for older browsers */
-        article, aside, details, figcaption, figure,
-        footer, header, hgroup, menu, nav, section {
-            display: block;
-        }
-        body {
-            line-height: 1;
-        }
-        ol, ul {
-            list-style: none;
-        }
-        blockquote, q {
-            quotes: none;
-        }
-        blockquote:before, blockquote:after,
-        q:before, q:after {
-            content: '';
-            content: none;
-        }
-        table {
-            border-collapse: collapse;
-            border-spacing: 0;
-        }
-        /* demo styles */
-        body {
-            background: #853131;
-            color: #000;
-        }  
-        .page {
-            background: #fff;
-            width: 920px;
-            margin: 0 auto;
-            padding: 20px 20px 0 20px;
-            overflow: hidden;
-        }
-        .font-container {
-            overflow-x: auto;
-            overflow-y: hidden;
-            margin-bottom: 40px;
-            line-height: 1.3;
-            white-space: nowrap;
-            padding-bottom: 5px;
-        }
-        h1 {
-            position: relative;
-            background: #46684a;
-            font-size: 32px;
-            color: #bee07d;
-            padding: 10px 20px;
-            margin: 0 -20px 12px -20px;
-        }
-        .letters {
-            font-size: 25px;
-            margin-bottom: 20px;
-        }
-        .s10:before {
-            content: '10px';
-        }
-        .s11:before {
-            content: '11px';
-        }
-        .s12:before {
-            content: '12px';
-        }
-        .s14:before {
-            content: '14px';
-        }
-        .s18:before {
-            content: '18px';
-        }
-        .s24:before {
-            content: '24px';
-        }
-        .s30:before {
-            content: '30px';
-        }
-        .s36:before {
-            content: '36px';
-        }
-        .s48:before {
-            content: '48px';
-        }
-        .s60:before {
-            content: '60px';
-        }
-        .s72:before {
-            content: '72px';
-        }
-        .s10:before, .s11:before, .s12:before, .s14:before,
-        .s18:before, .s24:before, .s30:before, .s36:before,
-        .s48:before, .s60:before, .s72:before {
-            font-family: Arial, sans-serif;
-            font-size: 10px;
-            font-weight: normal;
-            font-style: normal;
-            color: #999;
-            padding-right: 6px;
-        }
-        pre {
-            display: block;
-            padding: 9px;
-            margin: 0 0 12px;
-            font-family: Monaco, Menlo, Consolas, "Courier New", monospace;
-            font-size: 13px;
-            line-height: 1.428571429;
-            color: #333;
-            font-weight: normal;
-            font-style: normal;
-            background-color: #c94040;
-            border: 1px solid #a31919;
-            overflow-x: auto;
-            border-radius: 4px;
-        }
-        /* responsive */
-        @media (max-width: 959px) {
-            .page {
-                width: auto;
-                margin: 0;
-            }
-        }
+
+/* 1. CSS Reset (Оставлен без изменений) */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 1;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+/* ----- Конец CSS Reset ----- */
+
+
+/* 2. Основные стили страницы */
 body {
     background: #aa2929;
     color: #bee07d;
-}
-button {
-    transform: translateY(20px);
-    transition: all 0.3s ease;
-    font-family: 'Lepka';
+    font-family: 'Lepka', sans-serif; /* Базовый шрифт для всего */
     font-size: 20px;
-    border: none;
-    color: #bee07d;
-    cursor: pointer;
-    margin-left: 10px;
-    background-color: transparent;
-    &:hover {
-        color: #12b1a9;
-        transform: translateY(15px);
-    }
-    &:active {
-        color: #9b3232;
-        transform: translateY(25px);
-    }
-}
-button1 {
-    transform: translateY(5px);
-    transition: all 0.3s ease;
-    font-family: 'Lepka';
-    font-size: 20px;
-    border: none;
-    color: #bee07d;
-    cursor: pointer;
-    margin-left: 10px;
-    background-color: transparent;
-    &:hover {
-        color: #bee07d;
-        transform: translateY(2px);
-        transition: all 0.3s ease;
-    }
-    &:active {
-        color: #9b3232;
-        transform: translateY(4px);
-        transition: all 0.3s ease;
-    }
+    line-height: 1.4;
+    overflow-x: hidden; /* Перенесено из inline-стиля <body> */
 }
 
+/* 3. Стили для новой HTML-структуры (header, h1, form...) */
+header {
+    text-align: center;
+    padding: 20px 0;
+}
+
+h1 {
+    font-family: 'Lepka';
+    font-weight: bold;
+    font-style: normal;
+    padding: 5px 30px;
+    font-size: 2rem;
+    color: #bee07d;
+}
+
+h2 {
+    margin-bottom: 20px;
+}
+
+p, label {
+    margin-bottom: 15px;
+    display: block; /* Чтобы label был над textarea */
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px; /* Пространство между textarea и кнопкой */
+}
+
+/* 4. Стили проекта (card, textarea, button...) */
 .card {
     word-wrap: break-word;
     position: absolute;
@@ -206,9 +110,77 @@ button1 {
     text-align: center;
     border-radius: 15px;
     overflow-y: hidden;
-    
+    box-sizing: border-box; /* Добавлено для лучшего расчета padding */
 }
 
+textarea {
+    max-height: 200px;
+    font-family: 'Lepka';
+    font-size: 20px;
+    border: none;
+    color: #6b26a3ce;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: #bee07d;
+    resize: none;
+    width: 100%;
+    box-sizing: border-box; /* Важно для width: 100% */
+    padding: 10px; /* Добавлен внутренний отступ */
+    border-radius: 5px; /* Добавлено скругление */
+    /* Удален 'height: 100%' и 'margin-left: 10px' */
+}
+
+/* ИСПРАВЛЕНО: 'textarea:hover' вместо 'textarea &:hover' */
+textarea:hover {
+    color: #12b1a9;
+    /* Удален невалидный 'justify-content: flex-end;' */
+}
+
+/* ИСПРАВЛЕНО: 'textarea:active' вместо 'textarea &:active' */
+textarea:active {
+    color: #9b3232;
+    /* Удален невалидный 'justify-content: flex-end;' */
+}
+
+textarea::placeholder {
+    color: #6b26a3ce;
+    opacity: 0.7;
+}
+
+/* ИСПРАВЛЕНО: ширина с 100% на 10px */
+textarea::-webkit-scrollbar {
+    width: 10px;
+}
+
+button {
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+    font-family: 'Lepka';
+    font-size: 2rem; /* Синхронизировано с inline-стилем */
+    border: none;
+    color: #bee07d;
+    cursor: pointer;
+    background-color: transparent;
+    padding: 5px 30px; /* Перенесено из inline-стиля */
+    /* Удален 'margin-left: 10px', т.к. используется 'gap' в form */
+}
+
+/* ИСПРАВЛЕНО: 'button:hover' вместо 'button &:hover' */
+button:hover {
+    color: #12b1a9;
+    transform: translateY(15px);
+}
+
+/* ИСПРАВЛЕНО: 'button:active' вместо 'button &:active' */
+button:active {
+    color: #9b3232;
+    transform: translateY(25px);
+}
+
+/* ПРИМЕЧАНИЕ: 
+   - Правило 'button1' удалено, т.к. это невалидный HTML-тег.
+   - Правила для 'input' оставлены на случай, если вы решите его добавить.
+*/
 input {
     width: 300px;
     height: 40px;
@@ -232,45 +204,18 @@ input:active {
     transform: translateY(3px);
 }
 
+/* ИСПРАВЛЕНО: '1кук50' на '150' */
 circle {
     fill: none;
     stroke: #c8e620;
-    stroke-width:1;
-    cx: 1кук50;
+    stroke-width: 1;
+    cx: 150;
     cy: 150;
     r: 150;
     background-color: #c8e620;
-    
-}
-    
-textarea {
-    max-height: 200px;
-    font-family: 'Lepka';
-    font-size: 20px;
-    border: none;
-    color: #6b26a3ce;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    margin-left: 10px;
-    background-color:#bee07d;
-    resize: none;
-    width: 100%;
-    height: 100%;
-    box-sizing: border-box;
-    &:hover {
-        color: #12b1a9;
-        justify-content: flex-end;
-    }
-    &:active {
-        color: #9b3232;
-        justify-content: flex-end;
-    }
-}
-textarea::-webkit-scrollbar {
-    width: 100%; 
 }
 
-
+/* 5. Стили для обложек (оставлены без изменений) */
 .covers {
     display: flex;
     flex-wrap: wrap;
@@ -279,6 +224,21 @@ textarea::-webkit-scrollbar {
     margin-top: 20px;
     max-height: 500px;
     overflow-y: auto;
+    /* Стилизация скроллбара для Firefox */
+    scrollbar-width: thin;
+    scrollbar-color: #bee07d #46684a;
+}
+
+/* Стилизация скроллбара для Chrome/Safari/Edge */
+.covers::-webkit-scrollbar {
+    width: 10px;
+}
+.covers::-webkit-scrollbar-track {
+    background-color: #46684a;
+}
+.covers::-webkit-scrollbar-thumb {
+    background-color: #bee07d;
+    border-radius: 10px;
 }
 
 .cover-box {
@@ -296,24 +256,6 @@ textarea::-webkit-scrollbar {
     overflow: hidden;
     border-radius: 10px;
     transition: transform 1s ease-in-out;
-}
-
-.covers {
-    scrollbar-width: thin;
-    scrollbar-color: #bee07d #46684a;
-}
-
-.covers::-webkit-scrollbar {
-    width: 10px;
-}
-
-.covers::-webkit-scrollbar-track {
-    background-color: #46684a;
-}
-
-.covers::-webkit-scrollbar-thumb {
-    background-color: #bee07d;
-    border-radius: 10px;
 }
 
 .cover-wrapper img {
@@ -353,7 +295,6 @@ textarea::-webkit-scrollbar {
     font-size: 15px;
     color: #bee07d;
     text-align: center;
-
     transition: max-height 0.5s ease-in-out;
 }
 
@@ -365,9 +306,9 @@ textarea::-webkit-scrollbar {
     opacity: 1;
     transform: scale(1.05);
     transition: transform 0.3s ease-in-out;
-    
 }
 
+/* 6. Стили для букв в заголовке (оставлены без изменений) */
 span {
     color: #bee07d;
     font-family: 'Lepka';
@@ -377,18 +318,17 @@ span {
     margin: 0 -3px;
     padding: 0;
     transition: all 0.3s ease;
-    display: inline-block; 
+    display: inline-block;
 }
 
 span:hover {
-    transform: translateY(-4px) scale(1.05); 
+    transform: translateY(-4px) scale(1.05);
     cursor: pointer;
     color: #12b1a9;
 }
 
 span:active {
-    transform: translateY(-4px) scale(0.98); 
+    transform: translateY(-4px) scale(0.98);
     cursor: pointer;
     color: #12b1a9;
 }
-
