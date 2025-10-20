@@ -1,17 +1,27 @@
 async function downloadCovers() {
     const results = document.getElementById("results");
-    results.innerHTML = ""; 
+    results.innerHTML = "";
 
-    let rawLinks = document.getElementById("links").value.trim().split("\n").filter(link => link.trim() !== "");
-    const links = rawLinks.map(link => link.replace(/а/g, "a").replace(/А/g, "A")); 
+    let rawLinks = document.getElementById("links").value
+        .trim()
+        .split("\n")
+        .filter(link => link.trim() !== "");
+    const links = rawLinks.map(link =>
+        link.replace(/а/g, "a").replace(/А/g, "A")
+    );
 
     for (let i = 0; i < links.length; i++) {
         const link = links[i];
         try {
-            const response = await fetch(`https://soundcloud.com/oembed?url=${encodeURIComponent(link)}&format=json`);
-            const data = await response.json();
+            // ✅ Обход CORS через AllOrigins
+            const proxy = "https://api.allorigins.win/get?url=";
+            const response = await fetch(
+                `${proxy}${encodeURIComponent(`https://soundcloud.com/oembed?url=${link}&format=json`)}`
+            );
+            const json = await response.json();
+            const data = JSON.parse(json.contents);
 
-            let imageUrl = data.thumbnail_url.replace("-t500x500", "-t500x500"); 
+            let imageUrl = data.thumbnail_url.replace("-t500x500", "-t500x500");
 
             const box = document.createElement("div");
             box.className = "cover-box";
@@ -55,7 +65,7 @@ function sanitizeFileName(name) {
 
 async function downloadImage(url, filename = "cover.jpg") {
     try {
-        const resp = await fetch(url, { mode: "cors" });
+        const resp = await fetch(url);
         const blob = await resp.blob();
         const blobUrl = URL.createObjectURL(blob);
         const a = document.createElement("a");
